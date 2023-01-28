@@ -1,19 +1,25 @@
 version: '3.10'
 
 services:
-  python-flask-app-container:
-    image: contactsapp
+  python-flask-app:
+    # No inicia hasta que el servicio de mysql este up
+    depends_on:
+      - mysql-flask-app
+    image: contactapp-image:latest
     container_name: python-flask-app-container
     ports:
       - 3000:3000
     volumes:
-      - $pwd/app
+      - .:/app
 #    networks:
 #      - mysql-python-app-network
   
-  mysql-flask-app-container:
+  mysql-flask-app:
       image: mysql:8.0
-      container_name: mysql-flask-app-container 
+      container_name: mysql-flask-app-container
       restart: always
       environment:
         MYSQL_ROOT_PASSWORD: 12345
+      volumes:
+        # ejecuta el init.sql al iniciar mysql
+        - ./data/contactos.sql:/docker-entrypoint-initdb.d/init.sql

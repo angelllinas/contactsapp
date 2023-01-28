@@ -3,7 +3,7 @@ from flask_mysqldb import MySQL
 
 # MySQL connection
 app = Flask(__name__)
-app.config['MYSQL_HOST'] = ' mysql-flask-app-container'
+app.config['MYSQL_HOST'] = 'mysql-flask-app-container'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '12345'
 app.config['MYSQL_DB'] = 'flaskcontacts'

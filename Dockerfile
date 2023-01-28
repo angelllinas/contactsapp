@@ -12,6 +12,6 @@ RUN pip3 --no-cache-dir install -r requirements.txt && \
     chgrp -R 0 /app && \
     chmod -R g=u /app
 
-USER 1001
+#USER 1001
 
 CMD ["python3", "app.py"]

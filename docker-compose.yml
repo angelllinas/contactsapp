@@ -1,0 +1,15 @@
+version: '3.10'
+
+services:
+  python-flask-app-container:
+    image: angelllinas/python-flask-app:v1.0.0
+    container_name: python-flask-app-container
+    ports:
+      - 5002:5000
+    volumes:
+      - ./app
+    networks:
+      - mysql-python-app-network
+  
+  mysql-flask-app-container:
+    

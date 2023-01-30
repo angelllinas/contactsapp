@@ -13,11 +13,11 @@ its purpose is to manage the data of the user's contacts
 ![Captura de pantalla_20230130_074218](https://user-images.githubusercontent.com/65524105/215480382-86c84281-167e-4590-b040-b6e94f3d88db.png)
 
 ## Usage
-Create docker image
+Create docker image, run command at dockerfile location
 ```
-docker build contacts .
+docker build -t contactsapp .
 ```
-Ejecutar el comando y verificar el puerto localhost 3000
+Run the command and check localhost port 3000
 ```
-docker-compose up
+docker-compose up -d
 ```

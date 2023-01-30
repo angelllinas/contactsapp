@@ -14,10 +14,10 @@ its purpose is to manage the data of the user's contacts
 
 ## Usage
 Create docker image
-´´
+```
 docker build contacts .
-´´
-ejecutar el comando y verificar el puerto localhost 3000
-´´
+```
+Ejecutar el comando y verificar el puerto localhost 3000
+```
 docker-compose up
-´´
+```

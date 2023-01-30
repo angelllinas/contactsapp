@@ -8,3 +8,6 @@ its purpose is to manage the data of the user's contacts
 docker compose up
 
 localhost:3000
+
+## Container diagram 
+![Captura de pantalla_20230124_022926](https://user-images.githubusercontent.com/65524105/215471487-4f068bc8-2433-4f32-8efb-bcf2a57904b9.png)

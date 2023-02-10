@@ -5,10 +5,29 @@ services:
     # It doesn't start until the mysql service is up
     depends_on:
       - mysql-flask-app
+    build: .
     image: contactsapp
     container_name: python-flask-app-container
     ports:
       - 3000:3000
+    networks: 
+      - app_network
+  
+  php-my-admin:
+    depends_on:
+      - mysql-flask-app
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      - PMA_ARBITRARI=1
+      - PMA_USER=admin
+      - PMA_PASSWORD=admin
+      - PMA_HOST=mysql-flask-app-container
+    networks:
+      - phpmyadmin_network
   
   mysql-flask-app:
       image: mysql:8.0
@@ -19,3 +38,13 @@ services:
       volumes:
         # Run the init.sql when starting mysql
         - ./data/contacts.sql:/docker-entrypoint-initdb.d/init.sql
+      networks:
+        - mysql_network
+volumes: {}
+networks:
+  app_network:
+    name: app_net
+  phpmyadmin_network:
+    name: phpmyadmin_net
+  mysql_network:
+    name: mysql_net

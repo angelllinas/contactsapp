@@ -13,11 +13,12 @@ its purpose is to manage the data of the user's contacts
 ![Captura de pantalla_20230130_074218](https://user-images.githubusercontent.com/65524105/215480382-86c84281-167e-4590-b040-b6e94f3d88db.png)
 
 ## Usage
-Create docker image, run command at dockerfile location
+Execute in powechell
 ```
-docker build -t contactsapp .
+.\run.ps1
 ```
-Run the command and check localhost port 3000
+Execute in linux
 ```
-docker-compose up -d
+./tun.sh
 ```
+Check localhost:3000 for app and localhost:8081 for phpmyadmin

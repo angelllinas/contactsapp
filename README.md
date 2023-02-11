@@ -19,6 +19,6 @@ Execute in powerchell
 ```
 Execute in linux
 ```
-./tun.sh
+./run.sh
 ```
 Check localhost:3000 for app and localhost:8081 for phpmyadmin

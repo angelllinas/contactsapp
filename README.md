@@ -21,4 +21,4 @@ Execute in linux
 ```
 ./run.sh
 ```
-Check localhost:3000 for app and localhost:8081 for phpmyadmin
+Check localhost:3200 for nginx loadbalancer, localhost:3000 for app and localhost:8081 for phpmyadmin

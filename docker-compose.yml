@@ -10,10 +10,7 @@ services:
     ports:
       - 3200:80
     volumes:
-      - './nginx/nginx.conf:/etc/nginx/nginx.conf'
-    environment:
-      - NGINX_HOST=localhost
-      - NGINX_PORT=80
+      - './nginx:/etc/nginx/conf.d'
     networks:
       app_network:
         ipv4_address: '192.168.100.2'
@@ -44,7 +41,7 @@ services:
       - PMA_ARBITRARI=1
       - PMA_USER=root
       - PMA_PASSWORD=12345
-      - PMA_HOST=mysql-flask-app
+      - PMA_HOST=192.168.100.5
     networks:
       app_network:
         ipv4_address: '192.168.100.4'

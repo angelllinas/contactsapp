@@ -1,6 +1,6 @@
 FROM python:3.10.9
 
-EXPOSE 3000
+EXPOSE 5000/tcp
 
 ADD . /app
 
@@ -14,4 +14,4 @@ RUN pip3 --no-cache-dir install -r requirements.txt && \
 
 #USER 1001
 
-CMD ["python3", "app.py"]
+CMD ["flask", "run"]

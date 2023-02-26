@@ -6,6 +6,8 @@ ADD . /app
 
 COPY requirements.txt /app/requirements.txt
 
+COPY gunicorn_config.py /app
+
 WORKDIR /app
 
 RUN pip3 --no-cache-dir install -r requirements.txt && \
@@ -14,4 +16,4 @@ RUN pip3 --no-cache-dir install -r requirements.txt && \
 
 #USER 1001
 
-CMD ["flask", "run"]
+CMD ["gunicorn", "-c", "gunicorn_config.py", "app:app"]

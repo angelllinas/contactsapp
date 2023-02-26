@@ -6,7 +6,7 @@ services:
       - python-flask-app
     image: nginx:1.23
     container_name: nginx-load-balancer
-    restart: always
+    restart: on-failure:6
     ports:
       - 3200:80
     volumes:
@@ -22,7 +22,7 @@ services:
     build: .
     image: contactsapp
     container_name: app
-    restart: always
+    restart: on-failure:6
     ports:
       - 5000:5000
     networks: 
@@ -34,7 +34,7 @@ services:
       - mysql-flask-app
     image: phpmyadmin:5.2
     container_name: phpmyadmin
-    restart: always
+    restart: on-failure:6
     ports:
       - 8081:80
     environment:
@@ -49,7 +49,7 @@ services:
   mysql-flask-app:
       image: mysql:8.0
       container_name: database
-      restart: always
+      restart: on-failure:6
       environment:
         MYSQL_ROOT_PASSWORD: 12345
       volumes:

@@ -50,6 +50,8 @@ services:
       image: mysql:8.0
       container_name: database
       restart: on-failure:6
+      expose:
+        - "3606"
       environment:
         MYSQL_ROOT_PASSWORD: 12345
       volumes:

@@ -1,9 +1,9 @@
 version: '3.10'
 
 services:
-  nginx-balancer: 
+  nginx: 
     depends_on:
-      - python-flask-app
+      - database
     image: nginx:1.23
     container_name: nginx-load-balancer
     restart: on-failure:6
@@ -15,10 +15,10 @@ services:
       app_network:
         ipv4_address: '192.168.100.2'
   
-  python-flask-app:
+  app:
     # It doesn't start until the mysql service is up
     depends_on:
-      - mysql-flask-app
+      - database
     build: .
     image: contactsapp
     container_name: app
@@ -31,7 +31,7 @@ services:
   
   php-my-admin:
     depends_on:
-      - mysql-flask-app
+      - database
     image: phpmyadmin:5.2
     container_name: phpmyadmin
     restart: on-failure:6
@@ -46,17 +46,19 @@ services:
       app_network:
         ipv4_address: '192.168.100.4'
   
-  mysql-flask-app:
+  database:
       image: mysql:8.0
       container_name: database
       restart: on-failure:6
       expose:
         - "3606"
       environment:
-        MYSQL_ROOT_PASSWORD: 12345
+        MYSQL_ROOT_PASSWORD: UltraMarineDela13vaLegion
+        MYSQL_DARABASE: contacs_data
+        MYSQL_USER: angel
+        MYSQL_PASSWORD: 12345
       volumes:
-        # Run the init.sql when starting mysql
-        - ./data/contacts.sql:/docker-entrypoint-initdb.d/init.sql
+        - data
       networks:
           app_network:
             ipv4_address: '192.168.100.5'

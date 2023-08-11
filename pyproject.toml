@@ -1,0 +1,15 @@
+[build-system]
+requires = ["flit_core >=2.5,<3"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "app"
+author = "Angel Llinas"
+description = "Descripción de tu proyecto"
+license = "MIT"
+
+[tool.flit.scripts]
+yourapp = "app:main"
+
+[tool.flit.entrypoints]
+flask.run = "app:create_app"

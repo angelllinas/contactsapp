@@ -1,19 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_mysqldb import MySQL
+from sqlalchemy.orm import sessionmaker
+from utils.data import engine, Contact
 
-# MySQL connection
-app = Flask(__name__)
-app.config['MYSQL_HOST'] = '192.168.100.5'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '12345'
-app.config['MYSQL_DB'] = 'flaskcontacts'
-mysql = MySQL(app)
+# Crear una sesión para interactuar con la base de datos
+Session = sessionmaker(bind=engine)
+session = Session()
 
-# Settings
-app.secret_key = 'mysecretkey'
-
-
-@app.route('/')
+@session.route('/')
 def index():
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM contacts')
@@ -21,7 +13,7 @@ def index():
     return render_template('index.html', contacts=data)
 
 
-@app.route('/add', methods=['POST'])
+@session.route('/add', methods=['POST'])
 def add():
     if request.method == 'POST':
         fullname = request.form['fullname']
@@ -36,7 +28,7 @@ def add():
         return redirect(url_for('index'))
 
 
-@app.route('/edit/<id>')
+@session.route('/edit/<id>')
 def edit(id):
     cur = mysql.connection.cursor()
     cur.execute(f'SELECT * FROM contacts WHERE id = {id}')
@@ -44,7 +36,7 @@ def edit(id):
     return render_template('edit.html', contact=data[0])
 
 
-@app.route('/update/<id>', methods=['POST'])
+@session.route('/update/<id>', methods=['POST'])
 def update(id):
     if request.method == 'POST':
         fullname = request.form['fullname']
@@ -62,7 +54,7 @@ def update(id):
         return redirect(url_for('index'))
 
 
-@app.route('/delete/<string:id>')
+@session.route('/delete/<string:id>')
 def delete(id):
     cur = mysql.connection.cursor()
     cur.execute(f'DELETE FROM contacts WHERE id = {id}')

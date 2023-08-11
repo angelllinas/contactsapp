@@ -12,13 +12,4 @@ its purpose is to manage the data of the user's contacts
 ## ER diagram 
 ![Captura de pantalla_20230130_074218](https://user-images.githubusercontent.com/65524105/215480382-86c84281-167e-4590-b040-b6e94f3d88db.png)
 
-## Usage
-Execute in powerchell
-```
-.\run.ps1
-```
-Execute in linux
-```
-./run.sh
-```
 Check localhost:3200 for nginx loadbalancer, localhost:5000 for app and localhost:8081 for phpmyadmin
